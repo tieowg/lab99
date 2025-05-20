@@ -1,0 +1,23 @@
+import math
+ φ(x) = (e^(4x) + 5.5)^(1/3)
+def phi(x):
+    return (math.exp(4 * x) + 5.5) ** (1/3)
+
+
+x0 = 2.6
+epsilon = 1e-5
+max_iter = 100
+
+
+print("Iterasiya |     x        |     φ(x)      | |x_new - x_old|")
+for i in range(max_iter):
+    x1 = phi(x0)
+    diff = abs(x1 - x0)
+    print(f"{i+1:9} | {x0:.8f} | {x1:.8f} | {diff:.8f}")
+    
+    if diff < epsilon:
+        print(f"\nTəqribi kök: {x1:.8f}")
+        break
+    x0 = x1
+else:
+    print("\nMaksimum iterasiya sayına çatıldı, yaxınlaşma olmadı.")
