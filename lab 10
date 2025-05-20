@@ -1,0 +1,35 @@
+import math
+
+
+def f(x):
+    return x**3 - math.exp(4 * x) - 5.5
+
+def df(x):
+    return 3 * x**2 - 4 * math.exp(4 * x)
+
+x0 = 2.6
+epsilon = 1e-5
+max_iter = 100
+
+
+print("Iterasiya |     x        |     f(x)      | |x_new - x_old|")
+for i in range(max_iter):
+    fx = f(x0)
+    dfx = df(x0)
+    
+    if dfx == 0:
+        print("Törəmə 0-a bərabər oldu, Nyuton üsulu dayanır.")
+        break
+
+    x1 = x0 - fx / dfx
+    diff = abs(x1 - x0)
+    
+    print(f"{i+1:9} | {x0:.8f} | {fx:.8f} | {diff:.8f}")
+    
+    if diff < epsilon:
+        print(f"\n✅ Təqribi kök: {x1:.8f}")
+        break
+
+    x0 = x1
+else:
+    print("\n⚠ Maksimum iterasiya sayına çatıldı, yaxınlaşma baş vermədi.")
